@@ -1,10 +1,11 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using API.Entities.Enums;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace API.Entities
 {
     public class News : BaseEntity
     {
-        public News(string hat, string title, string text, string author, string img, string link, bool active)  { 
+        public News(string hat, string title, string text, string author, string img, string link, Status status)  { 
             Hat = hat;
             Title = title;
             Text = text;
@@ -12,8 +13,27 @@ namespace API.Entities
             Img = img;
             Link = link;
             PublishDate = DateTime.Now;
-            Active = active;
+            Status = status;
         }
+
+        //já que nossa propriedade é privada, vamos controlar a alteraçao de status via metodo
+        public Status ChangeStatus(Status status)
+        {
+            switch(status)
+            {
+                case Status.Active:
+                    status = Status.Active;
+                    break;
+                case Status.Inactive:
+                    status = Status.Inactive;
+                    break;
+                case Status.Draft:
+                    status = Status.Draft;
+                    break;
+            }
+            return status;
+        }
+
 
         [BsonElement("hat")]
         public string Hat { get; private set; }
@@ -37,7 +57,7 @@ namespace API.Entities
         public DateTime PublishDate { get; private set; }
 
         [BsonElement("active")]
-        public bool Active { get; private set; }
+        public Status Status { get; private set; }
 
     }
 }
