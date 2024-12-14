@@ -12,16 +12,25 @@ var builder = WebApplication.CreateBuilder(args);
 
 // ** Configuração de Serviços **
 
-// Configuração do banco de dados
+#region [Database]
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+#endregion
 
+#region [DI]
 // Configuração de Injeção de Dependência (DI)
 builder.Services.AddScoped<IMongoRepository<News>, MongoRepository<News>>();
 builder.Services.AddScoped<NewsService>();
+#endregion
 
+#region [AutoMapper]
 // Adicionando AutoMapper
 builder.Services.AddAutoMapper(typeof(EntityToViewModelMapping), typeof(ViewModelToEntityMapping));
+#endregion
+
+#region [Cors]
+builder.Services.AddCors();
+#endregion
 
 // Adicionando Controllers
 builder.Services.AddControllers();
@@ -43,7 +52,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+#region [Cors]
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
+#endregion
 app.UseAuthorization();
 
 app.MapControllers();
