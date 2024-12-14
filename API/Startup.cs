@@ -1,5 +1,6 @@
 ﻿using API.Infra;
 using API.Mappers;
+using API.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
