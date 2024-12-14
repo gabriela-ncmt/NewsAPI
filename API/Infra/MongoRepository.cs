@@ -30,11 +30,16 @@ namespace NewsAPI.Infra
             return news;
         }
 
-        public List<T> Get() => _model.Find(active => true).ToList();
+        public List<T> Get() => _model.Find(news => news.Deleted == false).ToList();
 
-        public T Get(string id) => _model.Find<T>(news=> news.Id == id).FirstOrDefault();
+        public T Get(string id) => _model.Find<T>(news=> news.Id == id && news.Deleted == false).FirstOrDefault();
 
-        public void Remove(string id) => _model.DeleteOne(news=> news.Id == id);
+        public void Remove(string id) 
+        {
+            var news = Get(id);
+            news.Deleted = true;
+            _model.ReplaceOne(news => news.Id == id, news);
+        }
 
         public void Update(string id, T news) => _model.ReplaceOne(news => news.Id == id, news);
     }
