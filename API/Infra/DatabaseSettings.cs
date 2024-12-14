@@ -5,7 +5,7 @@ namespace API.Infra
     public class DatabaseSettings : IDatabaseSettings
     {
         public string ConnectionString { get; set; }
-        public string DatabaseName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string DatabaseName { get ; set ; }
 
         public interface IDatabaseSettings
         {

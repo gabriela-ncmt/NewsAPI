@@ -1,3 +1,5 @@
+using API.Entities.ViewsModels;
+using API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -6,28 +8,48 @@ namespace API.Controllers
     [Route("[controller]")]
     public class NewsController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<NewsController> _logger;
+        private readonly NewsService _newsService;
 
-        public NewsController(ILogger<NewsController> logger)
+        public NewsController(ILogger<NewsController> logger, NewsService newsService)
         {
             _logger = logger;
+            _newsService = newsService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet(Name ="GetNews")]
+        public ActionResult<List<NewsViewModel>> Get() => _newsService.Get();
+
+        [HttpPost]
+        public ActionResult<NewsViewModel> Create(NewsViewModel news) 
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var result = _newsService.Create(news);
+            return CreatedAtRoute("GetNews", new { id = result.Id.ToString() }, result);
         }
+
+        [HttpPut("{id:length(24)}")]
+        public ActionResult<NewsViewModel> Update(string id, NewsViewModel newsIn) 
+        {
+            var news = _newsService.Get(id);
+            if(news is null)
+                return NotFound();
+
+            _newsService.Update(id, newsIn);
+            return CreatedAtRoute("GetNews", new { id = id }, newsIn);
+
+        }
+
+
+        [HttpDelete("{id:length(24)}")]
+        public ActionResult Delete(string id)
+        {
+            var news = _newsService.Get(id);
+            if (news is null)
+                return NotFound();
+
+            _newsService.Remove(id);
+            return Ok("News successfully deleted!");
+        }
+
     }
 }
