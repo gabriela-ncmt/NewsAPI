@@ -29,7 +29,7 @@ builder.Services.AddControllers();
 // Adicionando Swagger para documentação da API
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "NewsAPI", Version = "v1" });
 });
 
 var app = builder.Build();
