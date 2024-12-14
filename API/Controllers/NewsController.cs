@@ -48,7 +48,11 @@ namespace NewsAPI.Controllers
                 return NotFound();
 
             _newsService.Remove(id);
-            return Ok("News successfully deleted!");
+            var result = new
+            {
+                message = "News successfully deleted"
+            };
+            return Ok(result);
         }
 
     }
