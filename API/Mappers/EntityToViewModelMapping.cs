@@ -1,8 +1,8 @@
-﻿using API.Entities;
-using API.Entities.ViewsModels;
+﻿using NewsAPI.Entities;
+using NewsAPI.Entities.ViewsModels;
 using AutoMapper;
 
-namespace API.Mappers
+namespace NewsAPI.Mappers
 {
     public class EntityToViewModelMapping : Profile
     {

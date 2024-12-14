@@ -1,8 +1,8 @@
-﻿using API.Entities;
+﻿using NewsAPI.Entities;
 using MongoDB.Driver;
-using static API.Infra.DatabaseSettings;
+using static NewsAPI.Infra.DatabaseSettings;
 
-namespace API.Infra
+namespace NewsAPI.Infra
 {
     public interface IMongoRepository<T>
     {

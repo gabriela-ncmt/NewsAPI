@@ -1,12 +1,12 @@
-using API.Entities;
-using API.Infra;
-using API.Mappers;
-using API.Services;
+using NewsAPI.Entities;
+using NewsAPI.Infra;
+using NewsAPI.Mappers;
+using NewsAPI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using AutoMapper;
-using static API.Infra.DatabaseSettings;
+using static NewsAPI.Infra.DatabaseSettings;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,7 +1,7 @@
-﻿using API.Entities.Enums;
+﻿using NewsAPI.Entities.Enums;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace API.Entities
+namespace NewsAPI.Entities
 {
     public class News : BaseEntity
     {

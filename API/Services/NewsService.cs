@@ -1,9 +1,9 @@
-﻿using API.Entities;
-using API.Entities.ViewsModels;
-using API.Infra;
+﻿using NewsAPI.Entities;
+using NewsAPI.Entities.ViewsModels;
+using NewsAPI.Infra;
 using AutoMapper;
 
-namespace API.Services
+namespace NewsAPI.Services
 {
     public class NewsService
     {

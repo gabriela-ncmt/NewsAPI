@@ -1,6 +1,6 @@
-﻿using static API.Infra.DatabaseSettings;
+﻿using static NewsAPI.Infra.DatabaseSettings;
 
-namespace API.Infra
+namespace NewsAPI.Infra
 {
     public class DatabaseSettings : IDatabaseSettings
     {

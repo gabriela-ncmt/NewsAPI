@@ -1,4 +1,4 @@
-﻿namespace API.Entities.Enums
+﻿namespace NewsAPI.Entities.Enums
 {
     public enum Status
     {

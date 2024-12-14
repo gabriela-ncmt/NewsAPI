@@ -1,8 +1,8 @@
-using API.Entities.ViewsModels;
-using API.Services;
+using NewsAPI.Entities.ViewsModels;
+using NewsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
+namespace NewsAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

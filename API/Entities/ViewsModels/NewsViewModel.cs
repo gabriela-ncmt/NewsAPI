@@ -1,6 +1,6 @@
-﻿using API.Entities.Enums;
+﻿using NewsAPI.Entities.Enums;
 
-namespace API.Entities.ViewsModels
+namespace NewsAPI.Entities.ViewsModels
 {
     public class NewsViewModel
     {

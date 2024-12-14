@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace API.Entities
+namespace NewsAPI.Entities
 {
     public abstract class BaseEntity
     {
