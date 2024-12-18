@@ -7,6 +7,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using AutoMapper;
 using static NewsAPI.Infra.DatabaseSettings;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,15 @@ app.UseCors(c =>
     c.AllowAnyHeader();
     c.AllowAnyMethod();
     c.AllowAnyOrigin();
+});
+#endregion
+
+#region [StaticFiles]
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Images")),
+    RequestPath = "/imgs"
 });
 #endregion
 app.UseAuthorization();
